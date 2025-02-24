@@ -29,13 +29,14 @@ export const passwordSchema = z
 export const signUpWithPasswordSchema = z
   .object({
     email: emailSchema,
-    password: passwordSchema.regex(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
-      {
-        message:
-          "Password must contain at least 8 characters, including one uppercase, one lowercase, one number and one special character",
-      }
-    ),
+    // password: passwordSchema.regex(
+    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
+    //   {
+    //     message:
+    //       "Password must contain at least 8 characters, including one uppercase, one lowercase, one number and one special character",
+    //   }
+    // ),
+    password: z.string(),
     confirmPassword: z.string(),
   })
   .refine((schema) => schema.password === schema.confirmPassword, {
